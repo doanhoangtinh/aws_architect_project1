@@ -1,0 +1,57 @@
+[ec2-user@ip-10-2-10-176 ~]$ mysql -u admin -h udacity-replica.cv4cpzskze0q.us-west-2.rds.amazonaws.com -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 40
+Server version: 8.0.33 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> INSERT INTO employees (first_name, last_name, job_title, salary)
+    -> VALUES ('John', 'Doe', 'Software Engineer', 80000.00);
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [udacity]> SELECT * FROM employees;
++-------------+------------+-----------+-------------------+----------+
+| employee_id | first_name | last_name | job_title         | salary   |
++-------------+------------+-----------+-------------------+----------+
+|           1 | John       | Doe       | Software Engineer | 80000.00 |
++-------------+------------+-----------+-------------------+----------+
+1 row in set (0.002 sec)
+
+MySQL [udacity]> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-2-10-176 ~]$ mysql -u admin -h udacity-replica.cv4cpzskze0q.us-west-2.rds.amazonaws.com -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.33 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> INSERT INTO employees (first_name, last_name, job_title, salary)
+    -> VALUES ('John', 'Doe', 'Software Engineer 2', 90000.00);
+Query OK, 1 row affected (0.011 sec)
+
+MySQL [udacity]> SELECT * FROM employees;
++-------------+------------+-----------+---------------------+----------+
+| employee_id | first_name | last_name | job_title           | salary   |
++-------------+------------+-----------+---------------------+----------+
+|           1 | John       | Doe       | Software Engineer   | 80000.00 |
+|           2 | John       | Doe       | Software Engineer 2 | 90000.00 |
++-------------+------------+-----------+---------------------+----------+
+2 rows in set (0.001 sec)
+
+MySQL [udacity]> 

@@ -1,0 +1,9 @@
+For a Multi-AZ, multi-region database, the achievable Recovery Time Objective (RTO) and Recovery Point Objective (RPO) are designed to ensure high availability and data durability. In the event of a single Availability Zone (AZ) outage within a region, the minimum RTO can be remarkably low, typically within minutes or even seconds. This is because Multi-AZ configurations replicate data synchronously to a standby instance within the same region, allowing for rapid failover without data loss.
+
+In the unfortunate event of a single region outage, the minimum RTO may be slightly higher, typically ranging from several minutes to potentially a couple of hours. This is due to the need to failover to a standby region, which might involve DNS updates, routing changes, and the time required for database synchronization across regions.
+
+Regarding the minimum Recovery Point Objective (RPO), for a single AZ outage, it can be nearly zero or very close to real-time. Since data is replicated synchronously to the standby instance within the same AZ, there is minimal to no data loss in case of a failure.
+
+In the case of a single region outage, the minimum achievable RPO might be slightly higher, usually within a few seconds or minutes. Data synchronization between regions might introduce a slight delay, but it is typically designed to minimize data loss, ensuring that most recent data changes are preserved even during a region-level outage.
+
+These RTO and RPO objectives are achieved through sophisticated database replication and failover mechanisms, ensuring high availability and data consistency in multi-AZ, multi-region database setups. The actual values can vary depending on the specific configurations and technologies used, but they are generally optimized to minimize downtime and data loss to meet stringent business continuity requirements.

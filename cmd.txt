@@ -1,0 +1,22 @@
+mysql -u admin -h udacity.chhgpojghvce.us-east-1.rds.amazonaws.com -p
+
+mysql -u admin -h udacity-replica.cv4cpzskze0q.us-west-2.rds.amazonaws.com -p
+-- Create an "employees" table
+CREATE TABLE IF NOT EXISTS employees (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    job_title VARCHAR(100),
+    salary DECIMAL(10, 2)
+);
+
+-- Insert a new employee record
+INSERT INTO employees (first_name, last_name, job_title, salary)
+VALUES ('John', 'Doe', 'Software Engineer', 80000.00);
+
+-- Verify the employee record
+SELECT * FROM employees;
+
+
+INSERT INTO employees (first_name, last_name, job_title, salary)
+VALUES ('John', 'Doe', 'Software Engineer 2', 90000.00);
